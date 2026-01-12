@@ -1,0 +1,16 @@
+#Simple Use of NumPy: Working with Numbers Efficiently
+#Example: Calculate Total and Average Marks of Students
+
+import numpy as np
+
+# Marks of 5 students in a subject
+marks = np.array([78, 85, 90, 66, 88])
+
+# Total marks
+total = np.sum(marks)
+
+# Average marks
+average = np.mean(marks)
+
+print("Total Marks:", total)
+print("Average Marks:", average)
