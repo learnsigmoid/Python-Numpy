@@ -1,0 +1,58 @@
+
+#Retail Use Case: Daily Sales & Performance Analysis
+#You are analyzing 30 days of retail sales for 5 products in a store
+
+#Step 1: Represent Retail Sales Data with NumPy
+
+
+import numpy as np
+
+# Daily units sold for 5 products over 30 days
+sales = np.array([
+    [12, 8, 15, 10, 5],
+    [14, 7, 18, 12, 6],
+    [11, 9, 14, 11, 4],
+    [16, 10, 20, 13, 8],
+    [10, 6, 12, 9, 3],
+    # imagine this continues for 30 days
+])
+
+print("Shape of data:", sales.shape)
+
+#Step 2: Total Sales per Product (Top Seller)
+total_sales_per_product = np.sum(sales, axis=0)
+print("Total sales per product:", total_sales_per_product)
+
+#Step 3: Average Daily Sales per Product
+avg_sales_per_product = np.mean(sales, axis=0)
+print("Average daily sales:", avg_sales_per_product)
+
+#Step 4: Daily Store Performance
+daily_total_sales = np.sum(sales, axis=1)
+print("Total units sold per day:", daily_total_sales)
+
+#Step 5: Detect High & Low Sales Days (Outliers)
+mean = np.mean(daily_total_sales)
+std = np.std(daily_total_sales)
+
+high_sales_days = daily_total_sales > (mean + std)
+low_sales_days = daily_total_sales < (mean - std)
+
+print("High sales days:", high_sales_days)
+print("Low sales days:", low_sales_days)
+
+#Step 6: Revenue Calculation (Vectorized – FAST)
+prices = np.array([100, 150, 80, 120, 200])  # price per unit
+
+daily_revenue = np.dot(sales, prices)
+print("Daily revenue:", daily_revenue)
+
+#Step 7: Monthly Revenue Summary
+total_revenue = np.sum(daily_revenue)
+avg_daily_revenue = np.mean(daily_revenue)
+
+print("Total revenue:", total_revenue)
+print("Average daily revenue:", avg_daily_revenue)
+
+
+
