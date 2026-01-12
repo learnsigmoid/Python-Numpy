@@ -1,0 +1,43 @@
+#Install & import NumPy
+import numpy as np
+
+#Create a NumPy array
+numbers = np.array([10, 20, 30, 40, 50])
+print(numbers)
+
+#Basic operations
+print(numbers + 5)
+
+#Multiply all elements
+print(numbers * 2)
+
+#Create arrays quickly
+zeros = np.zeros(5)
+ones = np.ones(5)
+range_array = np.arange(1, 10, 2)
+
+print(zeros)
+print(ones)
+print(range_array)
+
+
+#Simple math & statistics
+scores = np.array([70, 85, 90, 60, 75])
+
+print("Average:", np.mean(scores))
+print("Max:", np.max(scores))
+print("Min:", np.min(scores))
+
+#Indexing & slicing (like lists, but better)
+print(scores[0])      # first element
+print(scores[-1])     # last element
+print(scores[1:4])    # slice
+
+#Very small real-world example
+
+Apply tax to product prices
+
+prices = np.array([100, 250, 400])
+taxed_prices = prices * 1.18   # 18% GST
+
+print(taxed_prices)
