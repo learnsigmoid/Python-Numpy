@@ -1,0 +1,76 @@
+#Sophisticated NumPy Example in EdTech
+#Adaptive Learning & Student Performance Analytics
+#An EdTech platform tracks student mastery across topics, weekly assessments, and engagement signals.
+
+import numpy as np
+
+# Dimensions: Students x Topics x Metrics
+# Metrics: [Quiz, Assignment, TimeSpent]
+data = np.array([
+    # Student 1
+    [
+        [78, 85, 40],  # Math
+        [65, 70, 35],  # Science
+        [88, 90, 50]   # English
+    ],
+    # Student 2
+    [
+        [55, 60, 25],[72, 75, 30],
+        [80, 82, 45]
+    ],
+    # Student 3
+    [
+        [92, 95, 55],
+        [88, 90, 50],
+        [90, 92, 52]
+    ]
+])
+
+print(data.shape)
+# (3 students, 3 topics, 3 metrics)
+
+time_spent = data[:, :, 2] #time spent
+
+time_norm = (time_spent - time_spent.min()) / (
+    time_spent.max() - time_spent.min()
+)
+
+
+quiz = data[:, :, 0]
+assignment = data[:, :, 1]
+
+mastery = (
+    0.4 * quiz +
+    0.4 * assignment +
+    0.2 * time_norm * 100
+)
+
+
+weak_topics = mastery < 70
+print("Weak topic matrix:\n", weak_topics)
+
+risk_score = (
+    (mastery < 60).sum(axis=1) +
+    (time_norm < 0.3).sum(axis=1)
+)
+
+print("Student risk scores:", risk_score)
+
+topic_difficulty = mastery.mean(axis=0)
+print("Average mastery per topic:", topic_difficulty)
+
+#rank the students
+student_overall = mastery.mean(axis=1)
+ranking = np.argsort(-student_overall)
+
+print("Student ranking (best to worst):", ranking + 1)
+
+#personalized recommendations
+recommendations = np.where(
+    mastery < 70,
+    "Assign remedial content",
+    "Proceed normally"
+)
+
+
+
